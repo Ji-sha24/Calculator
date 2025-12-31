@@ -4,12 +4,16 @@
         <title>Calculator</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="css/calculator.css">
+        <script src="js/calculator.js"></script>
     </head>
     <body>
         <div>
-            <button onclick="calculation='';console.log(calculation)">C</button>
-            <button onclick="calculation=calculation/100;console.log(calculation)">%</button>
-            <button onclick="calculation=calculation.slice(0,-1);console.log(calculation);">DEL</button>
+            <p class="display"></p>
+        </div>
+        <div>
+            <button onclick="calculation='';document.querySelector('.display').innerHTML=`${calculation}`;">C</button>
+            <button onclick="calculation=calculation/100;document.querySelector('.display').innerHTML=`${calculation}`;">%</button>
+            <button onclick="calculation=calculation.slice(0,-1);document.querySelector('.display').innerHTML=`${calculation}`;">DEL</button>
             <button onclick="updateCalculation('/')">/</button>
         </div>
         <div>
@@ -38,19 +42,10 @@
         </div>
         <div>
             <button onclick="updateCalculation('+');">+</button>
-            <button onclick="calculation=eval(calculation);console.log(calculation);">=</button>
+            <button onclick="calculation=eval(calculation);document.querySelector('.display').innerHTML=`${calculation}`;document.querySelector('.display').innerHTML=`${calculation}`;">=</button>
             <button onclick="updateCalculation('&rpar;');">&rpar;</button>
             <button onclick="updateCalculation('.');">.</button>
         </div>
-        
     </body>
-    <script>
-        let calculation=JSON.parse(localStorage.getItem('calculation'))|| '';
-        function updateCalculation(value){
-            calculation+=value;
-            console.log(calculation);  
-            const savedCalculation = JSON.stringify(calculation);
-            localStorage.setItem('calculation',savedCalculation);                   
-        }
-    </script>
 </html>
+
